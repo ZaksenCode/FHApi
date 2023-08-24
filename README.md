@@ -38,7 +38,7 @@ Every hologram created with this api has it own id and you can use it id to inte
 
 /holo modify 'id' view_range '1.0' - setup hologram view range
 # Connect in project
-##1 step - Add the JitPack repository to your build file
+## 1 step - Add the JitPack repository to your build file
 ```
 	<repositories>
 		<repository>
@@ -47,7 +47,7 @@ Every hologram created with this api has it own id and you can use it id to inte
 		</repository>
 	</repositories>
 ```
-##2 step - Add the dependency
+## 2 step - Add the dependency
 ```
 	<dependency>
 	    <groupId>com.github.ZaksenCode</groupId>
