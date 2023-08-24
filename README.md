@@ -37,3 +37,4 @@ Every hologram created with this api has it own id and you can use it id to inte
 /holo modify 'id' translation 'x' 'y' 'z' - setup text offset of hologram
 
 /holo modify 'id' view_range '1.0' - setup hologram view range
+# Use it by code
