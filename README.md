@@ -16,9 +16,11 @@ Every hologram created with this api has it own id and you can use it id to inte
 
 /holo modify 'id' glow_color 'red' 'green' 'blue' - setup glow_color_ovveride for hologram by RGB
 
-/holo modify 'id' left_rotation '0' '0' '0' '1.0' - setup left text rotation by quaternion
+/holo modify 'id' rotation 'x' 'y' - setup total text rotation
 
-/holo modify 'id' right_rotation '0' '0' '0' '1.0' - setup right text rotation by quaternion
+/holo modify 'id' left_rotation '0' '0' '0' '1.0' - setup left text rotation by quaternion > better use rotation
+
+/holo modify 'id' right_rotation '0' '0' '0' '1.0' - setup right text rotation by quaternion > better use rotation
 
 /holo modify 'id' line_width 'width' - setup one line width for hologram. p.s. if text bigger than one line he wrap to next line
 
