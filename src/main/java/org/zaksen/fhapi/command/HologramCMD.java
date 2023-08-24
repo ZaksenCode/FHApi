@@ -30,16 +30,16 @@ public class HologramCMD implements CommandExecutor
                         summonedHolo = HoloUtil.summonHoloWithId(player.getLocation(), newText, Integer.parseInt(args[2]));
                     }
                     if (summonedHolo == null) {
-                        player.sendMessage("That id was registered!");
+                        player.sendMessage(HoloUtil.formatText("&cThat id was registered!"));
                     } else {
-                        player.sendMessage("Create new hologram with id: " + summonedHolo.getId());
+                        player.sendMessage(HoloUtil.formatText("&aCreate new hologram with id: " + summonedHolo.getId()));
                     }
                     break;
                 }
                 case "remove": {
                     int id = Integer.parseInt(args[1]);
                     HoloUtil.removeHolo(id);
-                    player.sendMessage("Remove hologram with id: " + id);
+                    player.sendMessage(HoloUtil.formatText("&aRemove hologram with id: " + id));
                     break;
                 }
                 case "modify": {
@@ -162,17 +162,17 @@ public class HologramCMD implements CommandExecutor
                         }
                         break;
                     } catch (Exception e) {
-                        player.sendMessage("Wrong command args!");
+                        player.sendMessage(HoloUtil.formatText("&cWrong command args!"));
                         break;
                     }
                 }
                 default: {
-                    player.sendMessage("wrong subcommand for hologram");
+                    player.sendMessage(HoloUtil.formatText("&cWrong subcommand for hologram"));
                     break;
                 }
             }
         } catch (Exception e) {
-            player.sendMessage("Wrong command args!");
+            player.sendMessage(HoloUtil.formatText("&cWrong command args!"));
         }
         return true;
     }
