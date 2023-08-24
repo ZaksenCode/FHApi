@@ -199,4 +199,9 @@ public class HoloUtil {
     public static void setViewRange(Hologram holo, float range) {
         holo.getDisplay().setViewRange(range);
     }
+
+    // Rotation
+    public static void setRotation(Hologram holo, float x, float y) {
+        holo.getDisplay().setRotation(x, y);
+    }
 }

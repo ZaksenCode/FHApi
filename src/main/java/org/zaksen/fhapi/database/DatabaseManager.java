@@ -52,7 +52,9 @@ public class DatabaseManager {
                 int id = messageSet.getInt("id");
                 String uuid = messageSet.getString("uuid");
                 Entity loadedEntity = Bukkit.getEntity(UUID.fromString(uuid));
-                result.put(id, new LoadedHologram(id, (TextDisplay) loadedEntity));
+                if(loadedEntity instanceof TextDisplay) {
+                    result.put(id, new LoadedHologram(id, (TextDisplay) loadedEntity));
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

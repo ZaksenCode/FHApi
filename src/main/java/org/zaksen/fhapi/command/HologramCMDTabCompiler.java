@@ -40,7 +40,8 @@ public class HologramCMDTabCompiler implements TabCompleter {
                     }
                     case "modify": {
                         return Arrays.asList("scale", "alignment", "billboard", "line_width", "position", "glow_color",
-                                "see_through", "text_opacity", "shadow", "background", "text", "view_range", "translation", "left_rotation", "right_rotation");
+                                "see_through", "text_opacity", "shadow", "background", "text", "view_range", "translation",
+                                "left_rotation", "right_rotation", "rotation");
                     }
                 }
             }
@@ -81,6 +82,9 @@ public class HologramCMDTabCompiler implements TabCompleter {
                         case "text": {
                             return Collections.singletonList("text");
                         }
+                        case "rotation": {
+                            return Arrays.asList("-180", "0", "180");
+                        }
                     }
                 }
             }
@@ -100,6 +104,9 @@ public class HologramCMDTabCompiler implements TabCompleter {
                         case "glow_color":
                         case "background": {
                             return Arrays.asList("green", "255");
+                        }
+                        case "rotation": {
+                            return Arrays.asList("-90", "0", "90");
                         }
                     }
                 }
