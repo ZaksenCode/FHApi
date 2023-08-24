@@ -1,0 +1,12 @@
+name: FHApi
+version: '${project.version}'
+main: org.zaksen.fhapi.FHApi
+api-version: '1.20'
+authors: [Zaksen_]
+commands:
+  hologramSpawn:
+    description: spawn hologram text
+    aliases:
+      - holo
+      - hologram
+    usage: /hologram <subcommand> <args>
