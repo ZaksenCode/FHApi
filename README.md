@@ -37,4 +37,45 @@ Every hologram created with this api has it own id and you can use it id to inte
 /holo modify 'id' translation 'x' 'y' 'z' - setup text offset of hologram
 
 /holo modify 'id' view_range '1.0' - setup hologram view range
-# Use it by code
+# Connect in project
+##1 step - Add the JitPack repository to your build file
+```
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+```
+##2 step - Add the dependency
+```
+	<dependency>
+	    <groupId>com.github.ZaksenCode</groupId>
+	    <artifactId>FHApi</artifactId>
+	    <version>0.1</version>
+	</dependency>
+```
+# How use it
+## To use it, you need 'Hologram' object, you can get it by:
+1. use HoloUtil.getHolo(int id):
+```
+Hologram newHolo = HoloUtil.getHolo(1);
+```
+2. use HoloUtil.summonHolo(Location location, String text) or HoloUtil.summonHoloWithId(int id):
+```
+Hologram holo = HoloUtil.summonHolo(new Location(0, 100, 0), "new text");
+Hologram anotherHolo = HoloUtil.summonHoloWithId(new Location(0, 100, 0), "new text", 1);
+```
+> if you try summon hologram by HoloUtil.summonHoloWithId(int id) - the result can be null, if hologram with that id already exists
+
+## To change hologram data, you can:
+1. you can change data by HoloUtil class:
+```
+Hologram holo = HoloUtil.summonHolo(new Location(0, 100, 0), "new text");
+HoloUtil.setText(holo, "text");
+```
+2. you can change it directly by:
+```
+Hologram holo = HoloUtil.summonHolo(new Location(0, 100, 0), "new text");
+holo.getDisplay().setText("text");
+```
