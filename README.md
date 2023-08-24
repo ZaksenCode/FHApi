@@ -69,7 +69,7 @@ Hologram anotherHolo = HoloUtil.summonHoloWithId(new Location(0, 100, 0), "new t
 > if you try summon hologram by HoloUtil.summonHoloWithId(int id) - the result can be null, if hologram with that id already exists
 
 ## To change hologram data, you can:
-1. you can change data by HoloUtil class:
+1. you can change data by HoloUtil class (recommended):
 ```
 Hologram holo = HoloUtil.summonHolo(new Location(0, 100, 0), "new text");
 HoloUtil.setText(holo, "text");
