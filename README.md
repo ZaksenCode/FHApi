@@ -77,5 +77,6 @@ HoloUtil.setText(holo, "text");
 2. you can change it directly by:
 ```
 Hologram holo = HoloUtil.summonHolo(new Location(0, 100, 0), "new text");
-holo.getDisplay().setText("text");
+holo.setText("text");
+holo.getDisplay.setLocation(new Location(0, 100, 0));
 ```
