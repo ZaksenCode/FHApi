@@ -73,6 +73,7 @@ Hologram anotherHolo = HoloUtil.summonHoloWithId(new Location(0, 100, 0), "new t
 ```
 Hologram holo = HoloUtil.summonHolo(new Location(0, 100, 0), "new text");
 HoloUtil.setText(holo, "text");
+HoloUtil.setLocation(holo, new Location(0, 100, 0);
 ```
 2. you can change it directly by:
 ```
