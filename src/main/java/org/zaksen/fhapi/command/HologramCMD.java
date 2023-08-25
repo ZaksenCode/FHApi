@@ -76,22 +76,27 @@ public class HologramCMD implements CommandExecutor
                                 double y = Double.parseDouble(args[4]);
                                 double z = Double.parseDouble(args[5]);
                                 HoloUtil.setLocation(holo, new Location(player.getWorld(), x, y, z));
+                                break;
                             }
                             case "glow_color": {
                                 int red = Integer.parseInt(args[3]);
                                 int green = Integer.parseInt(args[4]);
                                 int blue = Integer.parseInt(args[5]);
                                 HoloUtil.setGlowColor(holo, red, green, blue);
+                                break;
                             }
                             case "see_through": {
                                 HoloUtil.setSeeThrough(holo, Boolean.parseBoolean(args[3]));
+                                break;
                             }
                             case "text_opacity": {
                                 String opacity = args[3];
                                 HoloUtil.setTextOpacity(holo, Byte.parseByte(opacity));
+                                break;
                             }
                             case "shadow": {
                                 HoloUtil.setShadow(holo, Boolean.parseBoolean(args[3]));
+                                break;
                             }
                             case "background": {
                                 int red = Integer.parseInt(args[3]);
@@ -102,6 +107,7 @@ public class HologramCMD implements CommandExecutor
                                 } else {
                                     HoloUtil.setBackgroundColor(holo, red, green, blue);
                                 }
+                                break;
                             }
                             case "text": {
                                 StringBuilder newText = new StringBuilder(args[3]);
@@ -109,9 +115,11 @@ public class HologramCMD implements CommandExecutor
                                     newText.append(" ").append(args[i]);
                                 }
                                 HoloUtil.setFormattedText(holo, newText.toString());
+                                break;
                             }
                             case "view_range": {
                                 HoloUtil.setViewRange(holo, Float.parseFloat(args[3]));
+                                break;
                             }
                             case "translation": {
                                 float scaleX = Float.parseFloat(args[3]);
@@ -158,6 +166,7 @@ public class HologramCMD implements CommandExecutor
                                 float rotationX = Float.parseFloat(args[3]);
                                 float rotationY = Float.parseFloat(args[4]);
                                 HoloUtil.setRotation(holo, rotationX, rotationY);
+                                break;
                             }
                         }
                         break;
