@@ -1,10 +1,15 @@
 package org.zaksen.fhapi.command;
 
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.BlockDisplay;
+import org.bukkit.entity.ItemDisplay;
 import org.bukkit.entity.Player;
-import org.zaksen.fhapi.text.HologramManager;
+import org.bukkit.entity.TextDisplay;
+import org.zaksen.fhapi.holo.*;
+import org.zaksen.fhapi.utils.Holos;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,7 +30,7 @@ public class HologramCMDTabCompleter implements TabCompleter {
             case 2: {
                 switch (subcommand) {
                     case "spawn": {
-                        return Collections.singletonList("text");
+                        return Arrays.asList("text", "block", "item");
                     }
                     case "remove":
                     case "modify": {
@@ -39,9 +44,19 @@ public class HologramCMDTabCompleter implements TabCompleter {
                         return Arrays.asList("id", "last");
                     }
                     case "modify": {
-                        return Arrays.asList("scale", "alignment", "billboard", "line_width", "position", "glow_color",
-                                "see_through", "text_opacity", "shadow", "background", "text", "view_range", "translation",
-                                "left_rotation", "right_rotation", "rotation");
+                        int id = Integer.parseInt(args[1]);
+                        IHologram holo = Holos.getHolo(id);
+                        if(holo.getDisplay() instanceof TextDisplay) {
+                            return Arrays.asList("scale", "alignment", "billboard", "line_width", "position", "glow_color",
+                                    "see_through", "text_opacity", "shadow", "background", "text", "view_range", "translation",
+                                    "left_rotation", "right_rotation", "rotation");
+                        } else if(holo.getDisplay() instanceof BlockDisplay) {
+                            return Arrays.asList("scale", "billboard", "position", "glow_color", "view_range",
+                                    "translation", "left_rotation", "right_rotation", "rotation", "block");
+                        } else {
+                            return Arrays.asList("scale", "billboard", "position", "glow_color", "view_range",
+                                    "translation", "left_rotation", "right_rotation", "rotation", "item");
+                        }
                     }
                 }
             }
@@ -84,6 +99,12 @@ public class HologramCMDTabCompleter implements TabCompleter {
                         }
                         case "rotation": {
                             return Arrays.asList("-180", "0", "180");
+                        }
+                        case "block": {
+                            return Arrays.asList("minecraft:bedrock");
+                        }
+                        case "item": {
+                            return Arrays.asList("minecraft:barrier");
                         }
                     }
                 }

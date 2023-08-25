@@ -6,7 +6,7 @@
 
     <groupId>org.zaksen</groupId>
     <artifactId>FHApi</artifactId>
-    <version>0.3</version>
+    <version>0.4</version>
     <packaging>jar</packaging>
 
     <name>FHApi</name>

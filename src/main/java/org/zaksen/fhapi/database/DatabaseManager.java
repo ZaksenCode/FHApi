@@ -2,13 +2,13 @@ package org.zaksen.fhapi.database;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.TextDisplay;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.zaksen.fhapi.FHApi;
-import org.zaksen.fhapi.data.LoadedHologram;
-import org.zaksen.fhapi.text.Hologram;
+import org.zaksen.fhapi.data.ILoadedDisplay;
+import org.zaksen.fhapi.holo.IHologram;
+import org.zaksen.fhapi.holo.TextHologram;
 
 import java.sql.*;
 import java.util.HashMap;
@@ -31,24 +31,28 @@ public class DatabaseManager {
         }
     }
 
-    public void addHologram(@NotNull Hologram holo) {
+    public void addHologram(@NotNull IHologram holo) {
         try {
-            statement.execute(String.format("INSERT INTO ids(id, uuid) VALUES('%s', '%s');", holo.getId(), holo.getUUID().toString()));
+            PreparedStatement newSt = connection.prepareStatement("INSERT INTO ids(id, uuid) VALUES(?, ?);");
+            newSt.setInt(1, holo.getId());
+            newSt.setString(2, holo.getUUID().toString());
+            newSt.executeUpdate();
         } catch (SQLException e) {
             logger.error("Failed to add hologram to database", e);
         }
     }
 
-    public void removeHologram(@NotNull Hologram holo) {
-        try {
-            statement.executeUpdate(String.format("DELETE FROM ids WHERE id = %s", holo.getId()));
+    public void removeHologram(@NotNull IHologram holo) {
+        try(PreparedStatement preSt = connection.prepareStatement("DELETE FROM ids WHERE id = ?;")) {
+            preSt.setInt(1, holo.getId());
+            preSt.executeUpdate();
         } catch (SQLException e) {
-            logger.error("Failed to delete hologram to database", e);
+            logger.error("Failed to delete hologram from database", e);
         }
     }
 
-    public HashMap<Integer, LoadedHologram> getHolograms() {
-        HashMap<Integer, LoadedHologram> result = new HashMap<>();
+    public HashMap<Integer, ILoadedDisplay> getHolograms() {
+        HashMap<Integer, ILoadedDisplay> result = new HashMap<>();
         ResultSet messageSet;
         try {
             messageSet = statement.executeQuery("SELECT * FROM ids;");
@@ -56,9 +60,7 @@ public class DatabaseManager {
                 int id = messageSet.getInt("id");
                 String uuid = messageSet.getString("uuid");
                 Entity loadedEntity = Bukkit.getEntity(UUID.fromString(uuid));
-                if (loadedEntity instanceof TextDisplay) {
-                    result.put(id, new LoadedHologram(id, (TextDisplay) loadedEntity));
-                }
+                result.put(id, new ILoadedDisplay(id, loadedEntity));
             }
         } catch (SQLException e) {
             logger.error("Failed to retrieve holograms from database", e);

@@ -1,6 +1,9 @@
-package org.zaksen.fhapi.text;
+package org.zaksen.fhapi.holo;
 
-import org.zaksen.fhapi.data.LoadedHologram;
+import org.bukkit.entity.BlockDisplay;
+import org.bukkit.entity.ItemDisplay;
+import org.bukkit.entity.TextDisplay;
+import org.zaksen.fhapi.data.ILoadedDisplay;
 import org.zaksen.fhapi.database.DatabaseManager;
 
 import java.util.ArrayList;
@@ -9,14 +12,14 @@ import java.util.List;
 
 public class HologramManager
 {
-    private static final HashMap<Integer, Hologram> holos = new HashMap<>();
+    private static final HashMap<Integer, IHologram> holos = new HashMap<>();
 
     public static boolean hasId(int id)
     {
         return holos.containsKey(id);
     }
 
-    public static Hologram getById(int id) {
+    public static IHologram getById(int id) {
         return holos.get(id);
     }
 
@@ -51,7 +54,7 @@ public class HologramManager
         return ids;
     }
 
-    public static void addHolo(Hologram holo)
+    public static void addHolo(IHologram holo)
     {
         holos.put(holo.getId(), holo);
         DatabaseManager.Instance.addHologram(holo);
@@ -68,9 +71,15 @@ public class HologramManager
 
     public static void onServerStartup()
     {
-        HashMap<Integer, LoadedHologram> loadedHolos = DatabaseManager.Instance.getHolograms();
+        HashMap<Integer, ILoadedDisplay> loadedHolos = DatabaseManager.Instance.getHolograms();
         loadedHolos.forEach((id, holo) -> {
-            holos.put(id, new Hologram(holo));
+            if (holo.getEntity() instanceof TextDisplay) {
+                holos.put(id, new TextHologram(holo));
+            } else if (holo.getEntity() instanceof BlockDisplay) {
+                holos.put(id, new BlockHologram(holo));
+            } else if (holo.getEntity() instanceof ItemDisplay) {
+                holos.put(id, new ItemHologram(holo));
+            }
         });
     }
 }
