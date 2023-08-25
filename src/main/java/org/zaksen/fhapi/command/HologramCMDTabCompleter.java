@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class HologramCMDTabCompiler implements TabCompleter {
+public class HologramCMDTabCompleter implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender commandSender, Command command, String label, String[] args) {
         Player player = null;
