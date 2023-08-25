@@ -2,7 +2,7 @@
 Floating Holograms Api (FHA) is a simple hologram api based on id system!
 Every hologram created with this api has it own id and you can use it id to interact with hologram.
 # Commands
-/holo spawn 'text' 'id' - spawn new hologram. you can use 'last' or number in id argument to select id.
+/holo spawn 'text/item/block' 'id' - spawn new hologram. you can use 'last' or number in id argument to select id.
 
 /holo remove 'id' - remove hologram.
 
@@ -39,6 +39,10 @@ Every hologram created with this api has it own id and you can use it id to inte
 /holo modify 'id' translation 'x' 'y' 'z' - setup text offset of hologram
 
 /holo modify 'id' view_range '1.0' - setup hologram view range
+
+/holo modify 'id' item 'item' - setup hologram item
+
+/holo modify 'id' block 'block' - setup hologram block 
 # Connect in project
 ## 1 step - Add the JitPack repository to your build file
 ```
@@ -54,32 +58,28 @@ Every hologram created with this api has it own id and you can use it id to inte
 	<dependency>
 	    <groupId>com.github.ZaksenCode</groupId>
 	    <artifactId>FHApi</artifactId>
-	    <version>0.1</version>
+	    <version>0.4</version>
 	</dependency>
 ```
 # How use it
 ## To use it, you need 'Hologram' object, you can get it by:
-1. use HoloUtil.getHolo(int id):
+1. use Holos.getHolo(int id):
 ```
-Hologram newHolo = HoloUtil.getHolo(1);
+IHologram newHolo = Holos.getHolo(1);
 ```
-2. use HoloUtil.summonHolo(Location location, String text) or HoloUtil.summonHoloWithId(int id):
+2. use Holos.spawnText(Location location) or Holos.spawnTextWithId(Location location, int id):
 ```
-Hologram holo = HoloUtil.summonHolo(new Location(0, 100, 0), "new text");
-Hologram anotherHolo = HoloUtil.summonHoloWithId(new Location(0, 100, 0), "new text", 1);
+TextHologram holo = Holos.spawnText(new Location(world, 0, 100, 0));
+TextHologram anotherHolo = Holos.spawnTextWithId(new Location(world, 0, 100, 0), 1);
 ```
-> if you try summon hologram by HoloUtil.summonHoloWithId(int id) - the result can be null, if hologram with that id already exists
+> if you try summon hologram by Holos.spawnTextWithId(int id) - the result can be null, if hologram with that id already exists
 
-## To change hologram data, you can:
-1. you can change data by HoloUtil class (recommended):
+## To change hologram data, you can use:
 ```
-Hologram holo = HoloUtil.summonHolo(new Location(0, 100, 0), "new text");
-HoloUtil.setText(holo, "text");
-HoloUtil.setLocation(holo, new Location(0, 100, 0);
-```
-2. you can change it directly by:
-```
-Hologram holo = HoloUtil.summonHolo(new Location(0, 100, 0), "new text");
-holo.setText("text");
-holo.getDisplay.setLocation(new Location(0, 100, 0));
+TextHologram tHolo = Holos.spawnText(new Location(world, 0, 100, 0));
+ItemHologram iHolo = Holos.spawnItem(new Location(world, 0, 100, 0));
+BlockHologram bHolo = Holos.spawnBlock(new Location(world, 0, 100, 0));
+HoloText.setText(tHolo, "text");
+HoloItem.setItem(iHolo, new ItemStack(Material.BARRIER));
+HoloBlock.setBlock(bHolo, Material.BEDROCK.createBlockData());
 ```
