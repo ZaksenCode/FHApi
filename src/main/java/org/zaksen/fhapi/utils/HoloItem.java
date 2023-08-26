@@ -2,13 +2,11 @@ package org.zaksen.fhapi.utils;
 
 import org.bukkit.Color;
 import org.bukkit.Location;
-import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Display;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Transformation;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
-import org.zaksen.fhapi.holo.BlockHologram;
 import org.zaksen.fhapi.holo.ItemHologram;
 
 public class HoloItem {

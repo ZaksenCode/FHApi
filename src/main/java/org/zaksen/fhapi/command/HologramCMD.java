@@ -9,6 +9,7 @@ import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.joml.Vector3f;
 import org.zaksen.fhapi.FHApi;
+import org.zaksen.fhapi.editor.MainMenu;
 import org.zaksen.fhapi.holo.BlockHologram;
 import org.zaksen.fhapi.holo.IHologram;
 import org.zaksen.fhapi.holo.ItemHologram;
@@ -19,7 +20,7 @@ public class HologramCMD implements CommandExecutor
 {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
-        if(!(commandSender instanceof Player) || args.length < 2) {
+        if(!(commandSender instanceof Player) || args.length < 1) {
             return true;
         }
         Player player = (Player) commandSender;
@@ -38,6 +39,18 @@ public class HologramCMD implements CommandExecutor
                 }
                 case "modify": {
                     modify(player, args);
+                    break;
+                }
+                case "menu": {
+                    try {
+                        if (args.length < 2) {
+                            MainMenu.openMainGui(player, 0);
+                        } else {
+                            MainMenu.openMainGui(player, Integer.parseInt(args[1]));
+                        }
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
                     break;
                 }
                 default: {

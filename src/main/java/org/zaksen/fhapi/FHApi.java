@@ -1,10 +1,13 @@
 package org.zaksen.fhapi;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.zaksen.fhapi.command.HologramCMD;
 import org.zaksen.fhapi.command.HologramCMDTabCompleter;
+import org.zaksen.fhapi.event.MenuEvents;
 import org.zaksen.fhapi.holo.HologramManager;
 import org.zaksen.fhapi.utils.ChatUtils;
+import org.zaksen.fhapi.editor.MainMenu;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +29,10 @@ public final class FHApi extends JavaPlugin {
         // Plugin startup logic
         getCommand("hologram").setExecutor(new HologramCMD());
         getCommand("hologram").setTabCompleter(new HologramCMDTabCompleter());
+        Bukkit.getPluginManager().registerEvents(new MenuEvents(), this);
+
+        int newPageCount = getConfig().getInt("gui_page-count");
+        MainMenu.setHoloPrePage(newPageCount);
     }
 
     private void loadFormattedMessages() {

@@ -50,6 +50,4 @@ public abstract class IHologram implements Hologram
     public UUID getUUID() {
         return entityUuid;
     }
-
-
 }

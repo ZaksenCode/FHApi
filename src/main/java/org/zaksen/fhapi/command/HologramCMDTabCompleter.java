@@ -1,11 +1,9 @@
 package org.zaksen.fhapi.command;
 
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.BlockDisplay;
-import org.bukkit.entity.ItemDisplay;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.TextDisplay;
 import org.zaksen.fhapi.holo.*;
@@ -25,7 +23,7 @@ public class HologramCMDTabCompleter implements TabCompleter {
         String subcommand = args[0];
         switch (args.length) {
             case 1: {
-                return Arrays.asList("spawn", "remove", "modify");
+                return Arrays.asList("spawn", "remove", "modify", "menu");
             }
             case 2: {
                 switch (subcommand) {
@@ -35,6 +33,9 @@ public class HologramCMDTabCompleter implements TabCompleter {
                     case "remove":
                     case "modify": {
                         return HologramManager.getIds();
+                    }
+                    case "menu": {
+                        return Collections.singletonList("page");
                     }
                 }
             }

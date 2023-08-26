@@ -82,4 +82,8 @@ public class HologramManager
             }
         });
     }
+
+    public static HashMap<Integer, IHologram> getHolos() {
+        return holos;
+    }
 }

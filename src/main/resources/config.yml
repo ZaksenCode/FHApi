@@ -8,7 +8,9 @@ msg_wrong-args: "&cWrong command args!"
 msg_wrong-subcommand: "&cWrong subcommand for hologram!"
 # this string used to notify player when he spawns hologram. %s - to paste id in
 msg_spawn-holo: "&aCreate new hologram with id: %s"
-# this string used to notify player when he remove hologram. %s - to paste id in
+# this string used to notify player when he removes hologram. %s - to paste id in
 msg_remove-holo: "&aRemove hologram with id: %s"
 # this string used to notify player when he tries spawns hologram with exists id
 msg_exists-id: "&cThat id already exists!"
+# setup for items on one page in gui editor. only (9, 18, 27, 36, 45)
+gui_page-count: 45
